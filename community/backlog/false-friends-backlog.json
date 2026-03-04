@@ -645,7 +645,7 @@
     "example": "資料をホッチキスで留めてください。",
     "id": 72,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "ドンマイ (donmai)",
@@ -788,7 +788,7 @@
     "explanation": "Often used as 'try again after failing'. (Set 5)",
     "example": "去年落ちた試験に今年リベンジする。",
     "id": 88,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
