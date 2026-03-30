@@ -656,12 +656,11 @@
   "english": "I am Gundam!",
   "anime": "Mobile Suit Gundam 00",
   "character": "Setsuna F. Seiei"
+},
+  {
+  "quote": "People’s lives don’t end when they die. It ends when they lose faith.",
+  "character": "Itachi Uchiha",
+  "anime": "Naruto Shippuden"
 }
 ]
-{
-  "japanese": "やれやれだぜ",
-  "romaji": "Yare yare da ze",
-  "english": "Good grief. (alt wording 6) (alt wording 58)",
-  "anime": "JoJo's Bizarre Adventure: Stardust Crusaders",
-  "character": "Jotaro Kujo"
-},
+
