@@ -5,12 +5,12 @@ import { ScrollText } from 'lucide-react';
 
 const TermsOfService = () => {
   return (
-    <LegalLayout
-      icon={<ScrollText className='size-6' />}
-      title='Terms of Service'
-      lastUpdated='April 8, 2026'
-    >
-      <PostWrapper textContent={termsOfService} />
+    <LegalLayout>
+      <PostWrapper
+        textContent={termsOfService}
+        icon={<ScrollText className='size-6' />}
+        lastUpdated='April 8, 2026'
+      />
     </LegalLayout>
   );
 };

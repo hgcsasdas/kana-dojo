@@ -2,16 +2,23 @@
 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { ReactNode, useState } from 'react';
 
 const PostWrapper = ({
   textContent,
   tag,
   date,
+  icon,
+  lastUpdated,
 }: {
   textContent: string;
   tag?: string;
   date?: string;
+  icon?: ReactNode;
+  lastUpdated?: string;
 }) => {
+  const [firstH1Rendered, setFirstH1Rendered] = useState(false);
+
   return (
     <div>
       {tag && date && (
@@ -29,12 +36,35 @@ const PostWrapper = ({
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
-          h1: props => (
-            <h1
-              className='mt-0 mb-4 text-[2.5rem] leading-tight font-bold text-(--main-color)'
-              {...props}
-            />
-          ),
+          h1: props => {
+            if (!firstH1Rendered && icon) {
+              setFirstH1Rendered(true);
+              return (
+                <div className='mb-2'>
+                  <div className='mb-3 flex items-center gap-3'>
+                    <span className='motion-safe:animate-float inline-flex h-12 w-12 items-center justify-center rounded-2xl border-b-8 border-(--secondary-color-accent) bg-(--secondary-color) text-(--background-color) [animation-delay:200ms]'>
+                      {icon}
+                    </span>
+                    <h1
+                      className='mt-0 mb-0 text-[2.5rem] leading-tight font-bold text-(--main-color)'
+                      {...props}
+                    />
+                  </div>
+                  {lastUpdated && (
+                    <p className='text-sm text-(--secondary-color)/70'>
+                      Last Updated: {lastUpdated}
+                    </p>
+                  )}
+                </div>
+              );
+            }
+            return (
+              <h1
+                className='mt-0 mb-4 text-[2.5rem] leading-tight font-bold text-(--main-color)'
+                {...props}
+              />
+            );
+          },
           h2: props => (
             <h2
               className='mt-12 mb-6 border-b border-(--border-color) pb-3 text-[1.75rem] leading-snug font-semibold text-(--main-color)'
