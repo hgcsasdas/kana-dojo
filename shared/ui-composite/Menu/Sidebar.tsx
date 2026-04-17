@@ -101,12 +101,6 @@ const baseExperimentsSection: NavSection = {
   collapsible: true,
 };
 
-// ============================================================================
-// Design Toggle
-// ============================================================================
-
-/** Toggle between ActionButton style (true) and simple background style (false) for active nav items */
-const USE_ACTION_BUTTON_STYLE = true;
 /** Toggle between aurora gradient heading (true) and original heading style (false) */
 const USE_AURORA_SIDEBAR_HEADING = false;
 
@@ -147,9 +141,6 @@ const NavLink = memo(
       !isMain && 'max-lg:hidden',
     );
 
-    // Style classes for original (simple) design
-    const activeClassesSimple =
-      'bg-(--border-color) text-(--main-color) lg:bg-(--card-color)';
     const inactiveClasses = 'text-(--secondary-color) hover:bg-(--card-color)';
 
     const renderIcon = (): ReactNode => {
@@ -177,22 +168,12 @@ const NavLink = memo(
 
     // Sliding indicator style - indicator is rendered separately and animates between items
     if (useSlidingIndicator) {
-      // Different indicator styles based on USE_ACTION_BUTTON_STYLE
-      const indicatorClasses = USE_ACTION_BUTTON_STYLE
-        ? 'h-full w-full rounded-xl lg:rounded-2xl border-b-6 lg:border-b-8 border-(--main-color-accent) bg-(--main-color)'
-        : 'h-full w-full rounded-2xl bg-(--card-color)';
-
-      // Text color when active differs based on style
-      const activeTextClass = USE_ACTION_BUTTON_STYLE
-        ? 'text-(--background-color)'
-        : 'text-(--main-color)';
-
-      // Padding adjustment for ActionButton style (compensate for border)
-      const paddingClasses = USE_ACTION_BUTTON_STYLE
-        ? isMain
-          ? 'max-lg:pt-1 max-lg:pb-2.5 lg:pt-2 lg:pb-3'
-          : 'max-lg:pt-1 max-lg:pb-2.5 lg:pt-1.5 lg:pb-2.5'
-        : 'max-lg:py-2 lg:py-2';
+      const indicatorClasses =
+        'h-full w-full rounded-xl lg:rounded-2xl border-b-6 lg:border-b-8 border-(--main-color-accent) bg-(--main-color)';
+      const activeTextClass = 'text-(--background-color)';
+      const paddingClasses = isMain
+        ? 'max-lg:pt-1 max-lg:pb-2.5 lg:pt-2 lg:pb-3'
+        : 'max-lg:pt-1 max-lg:pb-2.5 lg:pt-1.5 lg:pb-2.5';
 
       return (
         <div className='relative lg:w-full'>
@@ -252,7 +233,7 @@ const NavLink = memo(
     }
 
     // Active state with ActionButton style (non-sliding)
-    if (isActive && USE_ACTION_BUTTON_STYLE) {
+    if (isActive) {
       return (
         <Link
           href={item.href}
@@ -285,7 +266,7 @@ const NavLink = memo(
       );
     }
 
-    // Default Link style (used for inactive, or active with simple style)
+    // Default Link style (inactive)
     return (
       <Link
         href={item.href}
@@ -293,7 +274,7 @@ const NavLink = memo(
         className={clsx(
           baseClasses,
           isDesktopCollapsed && isMain && 'lg:justify-center lg:px-3',
-          isActive ? activeClassesSimple : inactiveClasses,
+          inactiveClasses,
         )}
         onClick={onClick}
       >
